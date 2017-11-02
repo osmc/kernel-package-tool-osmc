@@ -1,0 +1,15 @@
+#!/usr/bin/make -f
+# Uncomment this to turn on verbose mode.
+# export DH_VERBOSE=1
+
+%:
+	dh $@
+
+override_dh_auto_test:
+	dh_auto_test
+	bash -n debian/kernel-common.postinst
+	bash -n debian/kernel-common.postrm
+
+#Local variables:
+#mode: makefile
+#End:

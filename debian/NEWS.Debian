@@ -1,0 +1,205 @@
+kernel-package (12.028) unstable; urgency=low
+
+  * Rework handling of XEN packages 
+  
+    So far, kernel-package would pay special attention to the
+    configuration files that enabled XEN hypervisor/guest images, mangling
+    the package name, and changing the file paths where the images were
+    dumped. This caused no end of confusion to third party tools, and also
+    surprised people when packages with different names had unexpected
+    file conflicts. With dpkg defaulting to --force-overwrite that could
+    be catastrophic.  This is because a normal kernel image, a XenU or a
+    Xen0 image, all looked for modules in /lib/modules/$version, and would
+    conflict.  
+  
+    With this commit, kernel-package stops paying attention to the XEN
+    configuration hints in the config, producing a normal kernel image.
+    If users want to have a DomU or a Dom0 image from the same kernel
+    version, they will have to do what people wanting to run kernels witht
+    he same version with differing configurations have always had to do:
+    use --append-to-version to make the kernel images packages not
+    conflict. 
+
+ -- Manoj Srivastava <srivasta@debian.org>  Thu, 19 Nov 2009 00:39:20 -0600
+
+kernel-package (12.001) experimental; urgency=low
+
+  * This is a major change in functionality; do not upgrade unless you are
+    prepared for the changes required on target machines.
+  * make-kpkg removes and re-creates ./debian on every invocation
+
+    This does make the kernel-package far more nimble; we now offer less
+    surprise to users who did not expect stampts that the kernel-packagge
+    used to not do duplicate work. Now, if you edit a couple of files in
+    the kernel source, and run make-kpkg, the kernel will build as
+    expected. There are no more "version mismatch" errors, and the kernel
+    version can be modified using localconfig as one desires. With this,
+    kernel-package can rountinely be used to build kernels out of the git
+    tree.
+
+    The con is that we no longer cater to official kernels, or to anyone who
+    expected content in ./debian to persist. At some point, there are plans
+    to implement an overlay directory that will shadow
+    /usr/share/kernel-package/ruleset, but that is not yet implemented.
+  * Get rid of the facility to patch kernel sources
+
+    The patch the kernel facility was adding complexity, and failing to
+    provide the flexibility required for a generic patching facility. It used
+    to be useful at one point, but in the modern parlance, witht he
+    widespread use of distribute version control systems, and various
+    facilities to manage source and patch them, the built in version was
+    clunky.  This means the --added-patches option of make-kpkg is gone,
+    the work-around is to prepare the kernel sources _before_ calling
+    make-kpkg. 
+  * Remove special case code for official kernels
+
+    For the longest time (well, ever since Herbert Xu too over building
+    kernel images from me), kernel-package has carried specal case code
+    for official images. This has caused some problems, recently, since
+    the need to preserve ./debian has caused no end of problems when the
+    version changed out from under ./debian, or when people wanted to edit
+    a file and expected kernel-package to do a minimal recompile.
+
+    However, sometime in the Etch release cycle, the kernel team
+    deprecated kernel-package as the means of building official kernels,
+    and therefore, a full release cycle later, we can get rid of the
+    special case rules used for official packages. Also, this allows us to
+    drop ./debian at teh drop of a hart, and recreate it with an version
+    that reflects the current state of the kernel sources.
+  * No longer ship header debs that create symbolic links in /usr/src,
+    instead, ship an example shell script that replicated the old
+    behaviour. This script can then be deployed on the target machines,
+    and could be a part of a locally created kernel configuration package,
+    if one needs to deploy the same behavior across a cluster of
+    machines. 
+  * Image postinst no longer runs a boot loader
+
+    Note that this was already the case for grub, one of the more popular
+    boot loaders.
+  
+    Now that we have a mechanism for running arbitrary scripts when the
+    image packages are manipulated, we can stop embedding the boot loader
+    actions in the package itself. This means that lilo, elilo, etc will
+    no longer be run directly by the post isnt, and all the code related
+    to detecting the boot loader, managing the configuration, and adding
+    bits about bootloader documentation is all removed from the
+    postinst. This allows the image package to be more flexible, since the
+    end user is no longer restricted to the actions encoded in the image
+    package. This is a fairly large change. 
+  * The postinst no longer manipulates symlinks
+  
+    This is a shift from previous behaviour. Any symbolic link
+    manipulation must now be done with hook scripts in /etc/kernel/*.d
+    directories.
+  
+    Firstly, modern boot loaders scan the boot directory for kernel
+    images, and the user no longer has to code in the path to the symbolic
+    links that the kernel image package used to manipulate.
+
+    Secondly, hardcoding the behaviour into the postinst made for a very
+    rigid policy; and user wanted more flexibility than that. There is an
+    example shipped with the package that shows a more flexible scheme
+    that kept two symbolic links for version 2.4 kernels, and two symbolic
+    links for 2.6 kernels; it can be easily modified to keep two links for
+    2.9 kernels and two links for 2.8 kernels, or one of each, or whatever
+    the user wants. 
+  * The image postinst no longer runs the initramfs creation
+    commands. Instead, there are example scripts provided that will
+    perform the task. These scripts will work for official kernel images
+    as well.
+
+ -- Manoj Srivastava <srivasta@debian.org>  Wed, 01 Apr 2009 13:05:40 -0500
+
+kernel-package (10.051) unstable; urgency=low
+
+  * With this release of kernel package, changes have been made to the
+    specification and behaviour of hook scripts for the kernel image,
+    source, and header packages. Now relative paths can be used to specify
+    the names of scripts, as long as these scripts live in a "safe" path,
+    namely, /bin, /sbin, /usr/bin, /usr/sbin. Also, the sanity checking
+    has gotten more rigorous, failure to find a hook script or failure for
+    the script to execute correctly is now a fatal error.
+
+ -- Manoj Srivastava <srivasta@debian.org>  Sat,  5 Aug 2006 13:26:35 -0500
+
+kernel-package (10.025) unstable; urgency=low
+
+  * With this release, any scripts used in hooks which write to stdout
+    shall cause debconf to error out. In a majority of cases the error is
+    benign, and the package does install, but in some cases this causes
+    other hooks not to be run, and may result in an unbootable image. So,
+    please ensure that the scripts you use in the hooks do not write to
+    STDOUT, but use STDERR instead.
+
+ -- Manoj Srivastava <srivasta@debian.org>  Sun, 25 Dec 2005 10:14:33 -0600
+
+kernel-package (10.023) unstable; urgency=low
+
+  * Any hook scripts called from the kernel hooks should not write to
+    STDOUT. This is a consequence of using debconf, which commandeers
+    stdout. Even after db_stop is called, debconf does not restore stdout.
+    We used to redirect 1>&2 in the invocation of hook scripts, but we no
+    longer do so since some scripts may need to use debconf themselves, so
+    this change helps them (at the expense of other scripts that wrote to
+    stdout).
+
+ -- Manoj Srivastava <srivasta@debian.org>  Thu, 22 Dec 2005 10:02:15 -0600
+
+kernel-package (10.009) unstable; urgency=low
+
+  * The long obsolete --flavour option is now gone, and --append-to-version
+    should be used. 
+
+ -- Manoj Srivastava <srivasta@debian.org>  Tue,  8 Nov 2005 21:28:38 -0600
+
+kernel-package (10.007) experimental; urgency=low
+
+  * We now take special care of the case in which the kernel-headers 
+    are installed after the kernel-image has been; and the build 
+    symlink is not set. In this case, the header postinst now
+    correctly installs the build symlink.
+  * Another fallout from the kernel-package generated packages being made
+    lintian clean is that it was noticed that the default versioning was
+    such that the packages appeared to be Debian native, obviously not the
+    case. It now generates a proper $version-$debian version, unless over
+    ridden. 
+  
+ -- Manoj Srivastava <srivasta@debian.org>  Mon,  7 Nov 2005 20:11:04 -0600
+
+kernel-package (10.004) experimental; urgency=low
+
+  * This version of kernel-package has been largely reorganized. The
+    crusty old mechanism has beenremoved, the targets are now
+    streamlined. One of the factors that made the build mechanism so
+    complex was that the rules file had a dual purpose: Initially, when
+    ./debian was not present or not populated, it was responsible for
+    populating that, and then it was responsible for building the kernel
+    packages, incorporating any user customizations. 
+  * Implement the new ramdisk generation tool finding plan. The ramdisk
+    variable in /etc/kernel-pkg.conf or /etc/kernel-img.conf can now be a
+    space separated list of init ram disk creation commands, which need to
+    also support the --supported-host-version and
+    --supported-target-version options, just like mkinitrd does. The list
+    in /etc/kernel-pkg.conf is used to set defaults (by setting
+    INITRD_CMD). However, the defaults are set to a subset of "mkinitrd
+    mkinitrd.yaird mkinitramfs", the subset being decided based on the
+    version of the kernel being built, so one should refrain from setting
+    this manually -- unless one knows what one is doing.  The list in 
+    /etc/kernel-img.conf is the list tried at installation time.
+  * The stem used for the kernel-related packages is now set to
+    $DEB_HOST_OS -- so we create kfreebsd-image-foo or linux-image-foo
+    packages, for instance.
+  * The kernel image maintainer scripts now use  debconf; and a number of
+    questions have been moved to the config file while others are asked
+    conditionally in the postinst. The postinst has also become far less
+    verbose. 
+  * The postinst gets rid of the code that generated boot floppies
+    and created lilo.conf (that latter was probably illegal under current
+    policy anyway). The do_boot_enable and do_boot_floppy configuration
+    variables in /etc/kernel-img.conf are now invalid.
+  * Also, the source tree is not automatically cleaned; the do_clean
+    configuration variable, and the environment variable CLEAN_SOURCE, now
+    control if the source tree is optionally cleaned after the kernel
+    image package is built.
+  
+ -- Manoj Srivastava <srivasta@debian.org>  Thu,  3 Nov 2005 23:38:14 -0600

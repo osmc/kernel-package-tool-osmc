@@ -1,0 +1,144 @@
+#!/bin/bash
+#                               -*- Mode: Sh -*-
+# postinst ---
+# Author           : Manoj Srivastava ( srivasta@glaurung.green-gryphon.com )
+# Created On       : Fri Nov 14 11:25:07 2003
+# Created On Node  : glaurung.green-gryphon.com
+# Last Modified By : Jonathan Wiltshire
+# Last Modified On : Wed 26 Nov 22:06:03 GMT 2014
+# Last Machine Used: 
+# Update Count     : 12
+# Status           : Unknown, Use with caution!
+# HISTORY          :
+# Description      :
+#
+# arch-tag: 5401e9ef-39cc-4aee-96a4-61dfb8f32cf7
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+#
+
+# Abort if any command returns an error value
+set -e
+
+package_name=kernel-common
+
+if [ -z "$package_name" ]; then
+    print >&2 "Internal Error. Please report a bug."
+    exit 1;
+fi
+
+# This script is called as the last step of the installation of the
+# package.  All the package's files are in place, dpkg has already done
+# its automatic conffile handling, and all the packages we depend of
+# are already fully installed and configured.
+# summary of how this script can be called:
+#        * <postinst> `configure' <most-recently-configured-version>
+#        * <old-postinst> `abort-upgrade' <new version>
+#        * <old-postinst> abort-remove  # if prerm fails during removal
+#        * <conflictor's-postinst> `abort-remove' `in-favour' <package>
+#          <new-version>
+#        * <deconfigured's-postinst> `abort-deconfigure' `in-favour'
+#          <failed-install-package> <version> `removing'
+#          <conflicting-package> <version>
+# for details, see http://www.debian.org/doc/debian-policy/ or
+# the debian-policy package
+#
+# quoting from the policy:
+#     Any necessary prompting should almost always be confined to the
+#     post-installation script, and should be protected with a conditional
+#     so that unnecessary prompting doesn't happen if a package's
+#     installation fails and the `postinst' is called with `abort-upgrade',
+#     `abort-remove' or `abort-deconfigure'.
+
+case "$1" in
+    configure)
+        # Configure this package.  If the package must prompt the user for
+        # information, do it here.
+        my_arch=$(dpkg --print-architecture)
+        new_config=/etc/kernel-img.conf.ucf-new
+        sample_config=/usr/share/kernel-common/examples/etc/sample.kernel-img.conf
+        cp -f "$sample_config" "$new_config"
+        case $my_arch in
+            mips|mipsel|m68k)
+                do_initrd=no
+                ;;
+            *)
+                do_initrd=yes;
+        esac
+        case $my_arch in
+            alpha|i386|amd64|ia64|mips|mipsel|m68k)
+                link_in_boot=no
+                ;;
+            *)
+                link_in_boot=yes
+        esac
+        echo "do_initrd=$do_initrd"       >>$new_config
+        echo "link_in_boot=$link_in_boot" >>$new_config
+
+        # There are three sub-cases:
+        if test "${2+set}" != set; then
+            # We're being installed by an ancient dpkg which doesn't remember
+            # which version was most recently configured, or even whether
+            # there is a most recently configured version.
+            :
+
+        elif test -z "$2" || test "$2" = "<unknown>"; then
+            # The package has not ever been configured on this system, or was
+            # purged since it was last configured.
+            :
+
+        else
+            # Version $2 is the most recently configured version of this
+            # package.
+            :
+
+        fi ;;
+    abort-upgrade)
+        # Back out of an attempt to upgrade this package FROM THIS VERSION
+        # to version $2.  Undo the effects of "prerm upgrade $2".
+        :
+
+        ;;
+    abort-remove)
+        if test "$2" != in-favour; then
+            echo "$0: undocumented call to \`postinst $*'" 1>&2
+            exit 0
+        fi
+        # Back out of an attempt to remove this package, which was due to
+        # a conflict with package $3 (version $4).  Undo the effects of
+        # "prerm remove in-favour $3 $4".
+        :
+
+        ;;
+    abort-deconfigure)
+        if test "$2" != in-favour || test "$5" != removing; then
+            echo "$0: undocumented call to \`postinst $*'" 1>&2
+            exit 0
+        fi
+        # Back out of an attempt to deconfigure this package, which was
+        # due to package $6 (version $7) which we depend on being removed
+        # to make way for package $3 (version $4).  Undo the effects of
+        # "prerm deconfigure in-favour $3 $4 removing $6 $7".
+        :
+
+        ;;
+    *) echo "$0: didn't understand being called with \`$1'" 1>&2
+       exit 0;;
+esac
+
+#DEBHELPER#
+
+exit 0

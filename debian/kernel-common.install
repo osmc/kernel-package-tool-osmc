@@ -1,0 +1,2 @@
+kernel/examples/etc                     usr/share/kernel-common/examples
+kernel/examples/sample.module.control   usr/share/kernel-common/examples

@@ -1,0 +1,5 @@
+/etc              /
+/usr/bin          /usr
+/usr/sbin         /usr
+/usr/share/doc/kernel-package /usr/share/doc
+/usr/share/kernel-package     /usr/share

@@ -1,0 +1,10 @@
+kernel-packageconfig.8
+kernel-pkg.conf.5
+kernel-package.5
+kernel-packageconfig.de.8
+kernel-pkg.conf.de.5
+kernel-package.de.5
+kernel-packageconfig.fr.8
+kernel-pkg.conf.fr.5
+kernel-package.fr.5
+make-kpkg.8

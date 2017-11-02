@@ -1,0 +1,2188 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2014-06-16 19:27+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: TH
+#: kernel-img.conf.5:26
+#, no-wrap
+msgid "KERNEL-IMG.CONF"
+msgstr ""
+
+#. type: TH
+#: kernel-img.conf.5:26
+#, no-wrap
+msgid "Aug 20 2009"
+msgstr ""
+
+#. type: TH
+#: kernel-img.conf.5:26 kernel-package.5:26 kernel-packageconfig.8:27 kernel-pkg.conf.5:26 make-kpkg.8:27
+#, no-wrap
+msgid "Debian"
+msgstr ""
+
+#. type: TH
+#: kernel-img.conf.5:26 kernel-package.5:26 kernel-packageconfig.8:27 kernel-pkg.conf.5:26 make-kpkg.8:27
+#, no-wrap
+msgid "Debian GNU/Linux manual"
+msgstr ""
+
+#. type: SH
+#: kernel-img.conf.5:29 kernel-package.5:29 kernel-packageconfig.8:28 kernel-pkg.conf.5:29 make-kpkg.8:28
+#, no-wrap
+msgid "NAME"
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:31
+msgid "kernel-img.conf - site wide configuration file for kernel image packages"
+msgstr ""
+
+#. type: SH
+#: kernel-img.conf.5:31 kernel-packageconfig.8:30 kernel-pkg.conf.5:31 make-kpkg.8:30
+#, no-wrap
+msgid "SYNOPSIS"
+msgstr ""
+
+#. type: TP
+#: kernel-img.conf.5:33 kernel-package.5:164
+#, no-wrap
+msgid "I</etc/kernel-img.conf>"
+msgstr ""
+
+#. type: SH
+#: kernel-img.conf.5:33 kernel-package.5:31 kernel-packageconfig.8:32 kernel-pkg.conf.5:35 make-kpkg.8:34
+#, no-wrap
+msgid "DESCRIPTION"
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:39
+msgid ""
+"The file I</etc/kernel-img.conf> is a simple file looked at by the kernel "
+"image post installation process to allow local options for handling some "
+"aspects of the installation, overriding the defaults built into the image "
+"itself."
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:53
+msgid ""
+"The format of the file is a simple I<VAR>B<=>I<VALUE> pair. Boolean values "
+"may be specified as I<Yes>, I<True>, I<1>, and I<No>, I<False>, I<0>, and "
+"are case insensitive.  This file is automatically created by the "
+"installation script in certain circumstances."
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:55 kernel-pkg.conf.5:56
+msgid "At the moment, the user modifiable variables supported are:"
+msgstr ""
+
+#. type: TP
+#: kernel-img.conf.5:55
+#, no-wrap
+msgid "B<postinst_hook>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:84
+msgid ""
+"B<DEPRECATED>: Set this variable to a script to be executed during "
+"installation. The path can be a relative path if the script lives in a safe "
+"path -- that is, if it lives in /bin, /sbin, /usr/bin, or /usr/sbin, or must "
+"be an absolute path instead. Before calling this script, the env variable "
+"B<STEM> shall be set to the value of the I<--stem> argument (or the default "
+"value, linux), and B<KERNEL_PACKAGE_VERSION> shall be set to the version of "
+"the kernel-package that created the package.  This script shall be called "
+"with two arguments, the first being the I<version> of the kernel image, and "
+"the second argument being the I<location> of the kernel image itself. Errors "
+"in the script shall cause the postinst to fail. Since debconf is in use "
+"before the script is called, this script should issue no diagnostic messages "
+"to stdout -- while the postinst does call B<db_stop>, debconf does not "
+"restore stdout, so messages to stdout disappear.  An example script for grub "
+"users is present in /usr/share/doc/kernel-package/ directory.  This script "
+"is run I<after> the scripts in /etc/kernel/postinst.d directory."
+msgstr ""
+
+#. type: TP
+#: kernel-img.conf.5:84
+#, no-wrap
+msgid "B<postrm_hook>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:109
+msgid ""
+"B<DEPRECATED>: Set this variable to a script to be executed in the postrm "
+"(that is, after the image has been removed) after all the remove actions "
+"have been performed. The path can be a relative path if the script lives in "
+"a safe path -- that is, if it lives in /bin, /sbin, /usr/bin, or /usr/sbin, "
+"or must be an absolute path instead. The environment variable "
+"B<KERNEL_PACKAGE_VERSION> shall be set to the version of the kernel-package "
+"that created the package. This script shall be called with two arguments, "
+"the first being the I<version> of the kernel image, and the second argument "
+"being the I<location> of the kernel image itself. Errors in the script shall "
+"produce a warning message, but shall be otherwise ignored. Since debconf is "
+"in use before the script is called, this script should issue no diagnostic "
+"messages to stdout -- while the postinst does call B<db_stop>, debconf does "
+"not restore stdout, so messages to stdout disappear.  This script is run "
+"I<after> the scripts in /etc/kernel/postrm.d directory."
+msgstr ""
+
+#. type: TP
+#: kernel-img.conf.5:109
+#, no-wrap
+msgid "B<preinst_hook>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:128
+msgid ""
+"B<DEPRECATED>: Set this variable to a script to be executed before the "
+"package is unpacked, and can be used to put in additional checks. The path "
+"can be a relative path if the script lives in a safe path -- that is, if it "
+"lives in /bin, /sbin, /usr/bin, or /usr/sbin, or must be an absolute path "
+"instead. The environment variable B<KERNEL_PACKAGE_VERSION> shall be set to "
+"the version of the kernel-package that created the package. This script "
+"shall be called with two arguments, the first being the I<version> of the "
+"kernel image, and the second argument being the I<location> of the kernel "
+"image itself.  This script is run I<after> the scripts in "
+"/etc/kernel/preinst.d directory."
+msgstr ""
+
+#. type: TP
+#: kernel-img.conf.5:128
+#, no-wrap
+msgid "B<prerm_hook>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:152
+msgid ""
+"B<DEPRECATED>: Set this variable to a script to be executed before the "
+"package files are removed (so any added files may be removed) . The path can "
+"be a relative path if the script lives in a safe path -- that is, if it "
+"lives in /bin, /sbin, /usr/bin, or /usr/sbin, or must be an absolute path "
+"instead. The environment variable B<KERNEL_PACKAGE_VERSION> shall be set to "
+"the version of the kernel-package that created the package. This script "
+"shall be called with two arguments, the first being the I<version> of the "
+"kernel image, and the second argument being the I<location> of the kernel "
+"image itself. Errors in the script shall cause the prerm to fail. Since "
+"debconf is in use before the script is called, this script should issue no "
+"diagnostic messages to stdout -- while the postinst does call B<db_stop>, "
+"debconf does not restore stdout, so messages to stdout disappear.  This "
+"script is run I<after> the scripts in /etc/kernel/prerm.d directory."
+msgstr ""
+
+#. type: TP
+#: kernel-img.conf.5:152
+#, no-wrap
+msgid "B<src_postinst_hook>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:175
+msgid ""
+"B<DEPRECATED>: Unlike the other hook variables, this is meant for a script "
+"run during the post inst of a docs, headers or a source package. Using this "
+"hook for the headers package is now being deprecated, at some point the "
+"headers post install script shall only run the header_postinst_hook.  The "
+"path can be a relative path if the script lives in a safe path -- that is, "
+"if it lives in /bin, /sbin, /usr/bin, or /usr/sbin, or must be an absolute "
+"path instead. The environment variable B<KERNEL_PACKAGE_VERSION> shall be "
+"set to the version of the kernel-package that created the package.  This "
+"script shall be called with two arguments, the first being the I<name> of "
+"the package being installed (could be kernel source or headers), and the "
+"second argument being the I<version> of the package being installed. Errors "
+"in the script shall cause the postinst to fail.  This script is run I<after> "
+"the scripts in /etc/kernel/src_postinst.d directory."
+msgstr ""
+
+#. type: TP
+#: kernel-img.conf.5:175
+#, no-wrap
+msgid "B<header_postinst_hook>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:195
+msgid ""
+"B<DEPRECATED>: Unlike the other hook variables, this is meant for a script "
+"run during the post inst of a headers package only. The path can be a "
+"relative path if the script lives in a safe path -- that is, if it lives in "
+"/bin, /sbin, /usr/bin, or /usr/sbin, or must be an absolute path "
+"instead. The environment variable B<KERNEL_PACKAGE_VERSION> shall be set to "
+"the version of the kernel-package that created the package. This script "
+"shall be called with two arguments, the first being the I<name> of the "
+"package being installed, and the second argument being the I<version> of the "
+"package being installed. Errors in the script shall cause the postinst to "
+"fail.  This script is run I<after> the scripts in "
+"/etc/kernel/header_postinst.d directory."
+msgstr ""
+
+#. type: TP
+#: kernel-img.conf.5:195
+#, no-wrap
+msgid "B<clobber_modules>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:201
+msgid ""
+"If set, the preinst shall silently try to move /lib/modules/version out of "
+"the way if it is the same version as the image being installed. Use at your "
+"own risk.  This variable is unset by default."
+msgstr ""
+
+#. type: TP
+#: kernel-img.conf.5:201
+#, no-wrap
+msgid "B<warn_reboot>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:211
+msgid ""
+"This variable can be used to turn off the warning given when installing a "
+"kernel image which is the same version as the currently running version. If "
+"the modules list is changed, the modules dependencies may have been changed, "
+"and the modules for the new kernel may not run correctly on the running "
+"kernel if the kernel ABI has changed in the meanwhile. It is a good idea to "
+"reboot, and this is a note to remind you. If you know what you are doing, "
+"you can set this variable to no. This variable is set by default."
+msgstr ""
+
+#. type: TP
+#: kernel-img.conf.5:211
+#, no-wrap
+msgid "B<relink_build_link>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:218
+msgid ""
+"This option manipulates the build link created by recent kernels. If the "
+"link is a dangling link, and if a the corresponding kernel headers appear to "
+"have been installed on the system, a new symlink shall be created to point "
+"to them. The default is to relink the build link (YES)."
+msgstr ""
+
+#. type: TP
+#: kernel-img.conf.5:218
+#, no-wrap
+msgid "B<force_build_link>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:225
+msgid ""
+"This option manipulates the build link created by recent kernels. If the "
+"link is a dangling link, a new symlink shall be created to point to kernel "
+"headers data in /usr/src, whether they have been installed or not. The "
+"default is unset, we don't create potentially dangling symlinks by default."
+msgstr ""
+
+#. type: TP
+#: kernel-img.conf.5:225
+#, no-wrap
+msgid "B<relink_src_link>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:230
+msgid ""
+"This option manipulates the source link created by recent kernels. If the "
+"link is a dangling link it is deleted at install time. The default is to "
+"relink (delete) the source link (YES)."
+msgstr ""
+
+#. type: TP
+#: kernel-img.conf.5:230
+#, no-wrap
+msgid "B<silent_modules>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:244
+msgid ""
+"This option has been put in for the people who are vastly irritated on being "
+"warned about preexisting modules directory I</lib/modules/$version>.  That "
+"directory may belong to an old or defunct kernel image package, in which "
+"case problems may arise with leftover modules in that directory tree, or the "
+"directory may legitimately exist due to a independent modules package being "
+"installed for this kernel version that has already been unpacked.  In this "
+"latter case the existence of the directory is benign.  If you set this "
+"variable, you shall no longer be given a chance to abort if a preexisting "
+"modules directory I</lib/modules/$version> is detected.  This is unset by "
+"default."
+msgstr ""
+
+#. type: TP
+#: kernel-img.conf.5:244
+#, no-wrap
+msgid "B<ignore_depmod_err>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:250
+msgid ""
+"If set, does not prompt to continue after a depmod problem in the "
+"postinstall script. This facilitates automated installs, though it may mask "
+"a problem with the kernel image. A diagnostic is still issued. This is unset "
+"be default."
+msgstr ""
+
+#. type: SH
+#: kernel-img.conf.5:250 kernel-package.5:161 kernel-packageconfig.8:44 kernel-pkg.conf.5:338 make-kpkg.8:716
+#, no-wrap
+msgid "FILES"
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:257
+msgid ""
+"The file described here is I</etc/kernel-img.conf>.  Also, there are example "
+"scripts suitable for dropping into I</etc/kernel/*.d> installed in "
+"I</usr/share/doc/kernel-common/examples.>"
+msgstr ""
+
+#. type: SH
+#: kernel-img.conf.5:257 kernel-package.5:166 kernel-packageconfig.8:47 kernel-pkg.conf.5:343 make-kpkg.8:741
+#, no-wrap
+msgid "SEE ALSO"
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:262
+msgid "B<make>(1), B<make-kpkg>(1), B<kernel-pkg.conf>(5), B<The GNU Make manual>"
+msgstr ""
+
+#. type: SH
+#: kernel-img.conf.5:262 kernel-package.5:170 kernel-pkg.conf.5:348
+#, no-wrap
+msgid "BUGS"
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:264 kernel-package.5:172 kernel-pkg.conf.5:350
+msgid "There are no bugs.  Any resemblance thereof is delirium. Really."
+msgstr ""
+
+#. type: SH
+#: kernel-img.conf.5:264 kernel-package.5:172 kernel-packageconfig.8:49 kernel-pkg.conf.5:350 make-kpkg.8:753
+#, no-wrap
+msgid "AUTHOR"
+msgstr ""
+
+#. type: Plain text
+#: kernel-img.conf.5:266 kernel-package.5:174 kernel-packageconfig.8:52 kernel-pkg.conf.5:352 make-kpkg.8:755
+msgid ""
+"This manual page was written by Manoj Srivastava "
+"E<lt>srivasta@debian.orgE<gt>, for the Debian GNU/Linux system."
+msgstr ""
+
+#. type: TH
+#: kernel-package.5:26
+#, no-wrap
+msgid "KERNEL-PACKAGE"
+msgstr ""
+
+#. type: TH
+#: kernel-package.5:26
+#, no-wrap
+msgid "May  25 1999"
+msgstr ""
+
+#. type: Plain text
+#: kernel-package.5:31
+msgid "kernel-package - system for creating kernel related packages"
+msgstr ""
+
+#. type: Plain text
+#: kernel-package.5:42
+msgid ""
+"The B<kernel-package> package grew out of desire to automate the routine "
+"steps required to compile and install a custom kernel. If you are looking "
+"for instructions on how to use B<kernel-package>, please have a look at the "
+"manual B<make-kpkg>(1).  Configuring instructions are to be found in "
+"B<kernel-pkg.conf>(5)."
+msgstr ""
+
+#. type: SH
+#: kernel-package.5:42
+#, no-wrap
+msgid "Advantages of using kernel-package"
+msgstr ""
+
+#. type: TP
+#: kernel-package.5:44
+#, no-wrap
+msgid "B<i) Convenience.>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-package.5:53
+msgid ""
+"I used to compile kernels manually, and it involved a series of steps to be "
+"taken in order; kernel-package was written to take all the required steps "
+"(it has grown beyond that now, but essentially, that is what it does). This "
+"is especially important to novices: B<make-kpkg> takes all the steps "
+"required to compile a kernel, and installation of kernels is a snap."
+msgstr ""
+
+#. type: TP
+#: kernel-package.5:53
+#, no-wrap
+msgid "B<ii) Multiple images support>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-package.5:57
+msgid ""
+"It allows you to keep multiple version of kernel images on your machine with "
+"no fuss."
+msgstr ""
+
+#. type: TP
+#: kernel-package.5:57
+#, no-wrap
+msgid "B<iii) Multiple Flavors of the same kernel version>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-package.5:64
+msgid ""
+"It has a facility for you to keep multiple flavors of the same kernel "
+"version on your machine (you could have a stable 2.0.36 version, and a "
+"2.0.36 version patched with the latest drivers, and not worry about "
+"contaminating the modules in I</lib/modules>)."
+msgstr ""
+
+#. type: TP
+#: kernel-package.5:64
+#, no-wrap
+msgid "B<iv) Built in defaults>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-package.5:70
+msgid ""
+"It knows that some architectures do not have vmlinuz (using vmlinux "
+"instead), and other use zImage rather than bzImage, and calls the "
+"appropriate target, and takes care of moving the correct file into place."
+msgstr ""
+
+#. type: TP
+#: kernel-package.5:70
+#, no-wrap
+msgid "B<v) Module hooks>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-package.5:78
+msgid ""
+"Several other kernel module packages are hooked into B<kernel-package,> so "
+"one can seamlessly compile, say, B<pcmcia> modules at the same time as one "
+"compiles a kernel, and be assured that the modules so compiled are "
+"compatible."
+msgstr ""
+
+#. type: TP
+#: kernel-package.5:78
+#, no-wrap
+msgid "B<vi) dpkg support>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-package.5:84
+msgid ""
+"It enables you to use the package management system to keep track of the "
+"kernels created. Using make-kpkg creates a .deb file, and dpkg can track it "
+"for you. This facilitates the task of other packages that depend on the "
+"kernel packages."
+msgstr ""
+
+#. type: TP
+#: kernel-package.5:84
+#, no-wrap
+msgid "B<vii) Configuration tracking>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-package.5:91
+msgid ""
+"It keeps track of the configuration file for each kernel image in I</boot>, "
+"which is part of the image package, and hence is the kernel image and the "
+"configuration file are always together."
+msgstr ""
+
+#. type: TP
+#: kernel-package.5:91
+#, no-wrap
+msgid "B<viii) Multiple config files>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-package.5:97
+msgid ""
+"It allows you to specify a directory with config files, with separate config "
+"files for each sub-architecture (even allows for different config files for "
+"i386, i486, etc). It is really neat for people who need to compile kernels "
+"for a variety of sub architectures."
+msgstr ""
+
+#. type: TP
+#: kernel-package.5:97
+#, no-wrap
+msgid "B<ix) Auxiliary kernel .deb packages>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-package.5:103
+msgid ""
+"It allows one to create a package with the headers, or the sources, also as "
+"a deb file, and enables the package management system to keep track of those "
+"(and there are packages that depend on the package management system being "
+"aware of these packages)."
+msgstr ""
+
+#. type: TP
+#: kernel-package.5:103
+#, no-wrap
+msgid "B<x) Maintainer script services>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-package.5:108
+msgid ""
+"Since the kernel image package is a full fledged Debian package, it comes "
+"with maintainer scripts, which allow the user to add hook scripts to run "
+"when the package status changes."
+msgstr ""
+
+#. type: TP
+#: kernel-package.5:108
+#, no-wrap
+msgid "B<xi) Sub architecture support>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-package.5:112
+msgid ""
+"There is support for the multitudinous sub architectures that have blossomed "
+"under the umbrella of the m68k and power-PC architectures."
+msgstr ""
+
+#. type: TP
+#: kernel-package.5:112
+#, no-wrap
+msgid "B<xii) Portable kernel images>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-package.5:118
+msgid ""
+"Allows one to compile a kernel for another computer, for example using a "
+"fast machine to compile the kernel for installation on a slower "
+"machine. This is really nice since the modules are all included in the .deb; "
+"and one does not have to deal with modules manually."
+msgstr ""
+
+#. type: TP
+#: kernel-package.5:118
+#, no-wrap
+msgid "B<xiii) runtime hooks>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-package.5:132
+msgid ""
+"The preinst, postinst, prerm and the postrm scripts allow the local admin on "
+"the installation machine to add a script into runtime hooks; this can allow, "
+"amongst other things, grub users to add and remove kernel image stanzas from "
+"the grub menu (example scripts to do this are in the package). There are "
+"directories under I</etc/kernel> where related packages may drop off scripts "
+"that will be run by the maintainer scripts of the packages created by kernel "
+"package. Before running these scripts, the environment variable "
+"B<KERNEL_PACKAGE_VERSION> shall be set to the version of the kernel-package "
+"that created the package."
+msgstr ""
+
+#. type: TP
+#: kernel-package.5:132
+#, no-wrap
+msgid "B<xiv) Append descriptive bits to the kernel version>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-package.5:138
+msgid ""
+"One can append to the kernel version on the command line, or by setting an "
+"environment variable. So if your kernel is called "
+"kernel-image-2.4.1John.Home; it is unlikely to be overridden by the official "
+"2.4.1 kernel, since they are not the same version."
+msgstr ""
+
+#. type: SH
+#: kernel-package.5:139
+#, no-wrap
+msgid "Disadvantages of using make-kpkg"
+msgstr ""
+
+#. type: TP
+#: kernel-package.5:140
+#, no-wrap
+msgid "B<i) Automation.>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-package.5:144
+msgid ""
+"This is a cookie cutter approach to compiling kernels, and there are people "
+"who like being close to the bare metal."
+msgstr ""
+
+#. type: TP
+#: kernel-package.5:144
+#, no-wrap
+msgid "B<ii) Non traditional>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-package.5:149
+msgid ""
+"This is not how it is done in the non-Debian world. This flouts "
+"tradition. (It has been pointed out, though, that this is fast becoming "
+"Debian tradition)."
+msgstr ""
+
+#. type: TP
+#: kernel-package.5:149
+#, no-wrap
+msgid "B<iii) Needs superuser>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-package.5:160
+msgid ""
+"It forces you to use B<fakeroot> or B<sudo> or B<super> or be root to create "
+"a kernel image .deb file (this is not as bad as it used to be before "
+"B<fakeroot>)."
+msgstr ""
+
+#. type: TP
+#: kernel-package.5:162
+#, no-wrap
+msgid "I</etc/kernel-pkg.conf>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-package.5:170
+msgid "B<make>(1), B<make-kpkg>(1), B<The GNU Make manual>"
+msgstr ""
+
+#. type: TH
+#: kernel-packageconfig.8:27
+#, no-wrap
+msgid "KERNEL-PACKAGECONFIG"
+msgstr ""
+
+#. type: TH
+#: kernel-packageconfig.8:27
+#, no-wrap
+msgid "Jan 7 1997"
+msgstr ""
+
+#. type: Plain text
+#: kernel-packageconfig.8:30
+msgid "kernel-packageconfig - internal handler of /etc/kernel-pkg.conf"
+msgstr ""
+
+#. type: Plain text
+#: kernel-packageconfig.8:32
+msgid "B<kernel-packageconfig>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-packageconfig.8:42
+msgid ""
+"The utility B<kernel-packageconfig> is called internally by the "
+"B<kernel-package postinst> script to set up the conf file "
+"/etc/kernel-pkg.conf.  It is idempotent, and only modifies the file if it "
+"contains factory default values. It is B<not> meant for general use."
+msgstr ""
+
+#. type: SH
+#: kernel-packageconfig.8:42 make-kpkg.8:100
+#, no-wrap
+msgid "OPTIONS"
+msgstr ""
+
+#. type: Plain text
+#: kernel-packageconfig.8:44
+msgid "This utility does not have any options."
+msgstr ""
+
+#. type: Plain text
+#: kernel-packageconfig.8:47
+msgid "The file affected by this program is I</etc/kernel-pkg.conf>."
+msgstr ""
+
+#. type: Plain text
+#: kernel-packageconfig.8:49
+msgid "B<kernel-pkg.conf>(5)"
+msgstr ""
+
+#. type: TH
+#: kernel-pkg.conf.5:26
+#, no-wrap
+msgid "KERNEL-PKG.CONF"
+msgstr ""
+
+#. type: TH
+#: kernel-pkg.conf.5:26
+#, no-wrap
+msgid "Jan  7 1997"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:31
+msgid "kernel-pkg.conf - configuration file for make-kpkg"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:35
+msgid "I</etc/kernel-pkg.conf> or I<~/.kernel-pkg.conf>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:48
+msgid ""
+"The file I</etc/kernel-pkg.conf> or I<~/.kernel-pkg.conf> is actually a "
+"B<Makefile> snippet included during the kernel packages build process, and "
+"hence you may put any legal Makefile directive in that file (just make very "
+"sure you know what you are doing).  If the per user configuration file "
+"I<~/.kernel-pkg.conf> exists, it is loaded in favor of the system wide "
+"configuration file I</etc/kernel-pkg.conf>."
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:54
+msgid ""
+"All the variables have reasonable default values, and maybe overridden on a "
+"per run or a per individual basis by using environment variables.  Some of "
+"the variables can further be overridden by options to B<make-kpkg>."
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:56
+#, no-wrap
+msgid "B<maintainer>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:65
+msgid ""
+"Local kernel (image, header, doc, etc.) package maintainer. Set up at "
+"package installation by the I<postinst>.  Can be overridden by the "
+"environment variable B<KPKG_MAINTAINER>.  Please note that any apostrophes "
+"\"'\" shall have to be quoted like so: maintainer = John O'\\e''Brien. Yes, "
+"this is ugly, but this works."
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:65
+#, no-wrap
+msgid "B<email>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:72
+msgid ""
+"The email address of that person.  Set up at package installation by the "
+"I<postinst>.  Can be overridden by the environment variable B<KPKG_EMAIL>."
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:72
+#, no-wrap
+msgid "B<pgp>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:92
+msgid ""
+"A key-ID to use when signing packages. Usually passed along to "
+"I<dpkg-buildpackage> using the I<-k> option, and also third party modules in "
+"the B<KMAINT> environment variable, if separate modules (like pcmcia, etc.) "
+"are being built in I<$MODULE_PATH>.  Can be overridden by the environment "
+"variable B<PGP_SIGNATURE>, and is overridden (again) by the I<--pgpsign> "
+"option of B<make-kpkg>.  Defaults to I<maintainer>.  (Optional)"
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:92 make-kpkg.8:673
+#, no-wrap
+msgid "B<debian>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:105
+msgid ""
+"The version of the kernel packages, includes both the upstream version and "
+"the Debian revision. Can be overridden by the environment variable "
+"B<DEBIAN_REVISION>, and is overridden (again) by the I<--revision> option of "
+"B<make-kpkg>.  Defaults to I<E<lt>VERSIONE<gt>-10.0.0.Custom> (Optional)"
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:105
+#, no-wrap
+msgid "B<debian_revision_mandatory>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:112
+msgid ""
+"Normally unset. If this, or the environment variable "
+"B<DEBIAN_REVISION_MANDATORY> are set, then not providing a Debian revision "
+"results in an error (and B<make-kpkg> shall not provide a default value of "
+"10.0.0.Custom)"
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:112
+#, no-wrap
+msgid "B<kimage>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:126
+msgid ""
+"The kernel image type (i.e. zImage or bzImage). Can be overridden from the "
+"environment variable B<IMAGE_TYPE>, and is overridden (again) by the options "
+"I<--zimage> or I<--bzimage> of B<make-kpkg>.  Defaults to I<bzImage>.  "
+"(Optional)"
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:126
+#, no-wrap
+msgid "B<config_target>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:135
+msgid ""
+"What type of configure step to do.  Defaults to oldconfig, which is good for "
+"non-interactive (or minimally interactive) runs.  (ENV variable "
+"B<CONFIG_TARGET> overrides this setting.)  If the value of config_target is "
+"not recognized, then it is reset to oldconfig."
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:135
+#, no-wrap
+msgid "B<use_saved_config>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:142
+msgid ""
+"This is an experts only variable. If set to NO (ENV variable "
+"B<USE_SAVED_CONFIG> overrides this), the file .config.save in the top level "
+"directory is ignored."
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:142
+#, no-wrap
+msgid "B<root_cmd>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:169
+msgid ""
+"This is a variable meant to be passed on to B<dpkg-buildpackage> in the "
+"I<buildpackage> target.  This should be set to a means of gaining superuser "
+"access (for example, I<`sudo'> or I<`fakeroot'>)  as needed by "
+"B<dpkg-buildpackages>' -r option. The environment variable B<ROOT_CMD> "
+"overrides this. Use the environment variable B<UNSIGN_SOURCE> to pass an "
+"option to dpkg-buildpackage to not sign the source; similarly, use the "
+"environment variable B<UNSIGN_CHANGELOG> to pass an option to "
+"dpkg-buildpackage to not sign the changelog. Again, this variable is only "
+"useful for the I<buildpackage> target. Set the environment variable "
+"B<ROOT_CMD> if you just wish to build the kernel image, for instance."
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:169
+#, no-wrap
+msgid "B<delete_build_link>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:178
+msgid ""
+"If set to YES, the symbolic link I</lib/modules/$VERSION/build> shall be "
+"removed from the resulting .deb package.  The environment variable "
+"B<DELETE_BUILD_LINK> overrides this. The default is unset. Note that this is "
+"case sensitive, yes shall not work."
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:178
+#, no-wrap
+msgid "B<do_clean>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:185
+msgid ""
+"Set to YES, this causes a make clean to be run in the kernel source tree "
+"after building the kernel image package. The environment variable "
+"B<CLEAN_SOURCE> overrides this.  The default is unset. Note that this is "
+"case sensitive, yes shall not work."
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:185
+#, no-wrap
+msgid "B<install_vmlinux>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:190
+msgid ""
+"Set to YES to install the uncompressed kernel ELF image along with the "
+"bootable compressed kernel image (vmlinuz).  The default is unset. Note that "
+"this is case sensitive, yes shall not work."
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:190
+#, no-wrap
+msgid "B<image_clean_hook>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:199
+msgid ""
+"Set to point to an executable, this shall cause that executable to run from "
+"the top level of the (temporary) kernel image tree before the kernel image "
+"is packaged. This has no effect on anything other than the image that is "
+"being packaged -- if the script operates on the current directory and its "
+"children, the original source tree should remain intact.  This is to "
+"facilitate messaging of the kernel image that is packaged."
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:199
+#, no-wrap
+msgid "B<source_clean_hook>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:211
+msgid ""
+"Set to point to an executable, this shall cause that executable to run from "
+"the top level of the (temporary) kernel source tree before the sources are "
+"packaged, I<./debian/tmp-source/usr/src/kernel-source-X.X.XX>.  This has no "
+"effect on anything other than the sources that are being packaged -- if the "
+"script operates on the current directory and its children, the original "
+"source tree should remain intact. This is to facilitate messaging of the "
+"kernel sources that are packaged (for example, to remove version control "
+"directories, or to prune away unwanted architectures)."
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:211
+#, no-wrap
+msgid "B<header_clean_hook>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:221
+msgid ""
+"Set to point to an executable, this shall cause that executable to run from "
+"the top level of the kernel headers before the headers are packaged. This "
+"has no effect on anything other than the sources that are being packaged -- "
+"if the script operates on the current directory and its children, the "
+"original source tree should remain intact. This is to facilitate messaging "
+"of the kernel headers that are packaged (for example, to remove version "
+"control directories, or to prune away unwanted architectures)."
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:221
+#, no-wrap
+msgid "B<doc_clean_hook>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:231
+msgid ""
+"Set to point to an executable, this shall cause that executable to run from "
+"the top of the documentation tree before kernel documentation is packaged.  "
+"This has no effect on anything other than the documentation that is being "
+"packaged -- if the script operates on the current directory and its "
+"children, the original source tree should remain intact. This is to "
+"facilitate messaging of the kernel documentation that is packaged (for "
+"example, to remove version control directories, or to prune away unwanted "
+"architectures)."
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:231
+#, no-wrap
+msgid "B<extra_docs>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:243
+msgid ""
+"This variable should be set to the path of any extra documentation that "
+"should be installed in I</usr/share/doc/kernel-image-X.X.XX/> "
+"directory. There is no checking for name conflicts, and the files are not "
+"compressed. Hence, if you want the files to be compressed, please "
+"precompress it and provide the path of the compressed file.  The environment "
+"variable B<EXTRA_DOCS> overrides this, and would most likely be how extra "
+"documentation is specified."
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:243
+#, no-wrap
+msgid "B<kpkg_follow_symlinks_in_src>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:253
+msgid ""
+"This option is especially useful for people who use symlink farms to compile "
+"kernels. With this option, kernel-source and kernel-header packages shall "
+"not be just full of dangling symlinks, instead, the symbolic links shall be "
+"followed. Please note that any symbolic links in the kernel sources would be "
+"flattened as well.  The environment variable B<KPKG_FOLLOW_SYMLINKS_IN_SRC> "
+"overrides this.  The default is unset."
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:253
+#, no-wrap
+msgid "B<make_libc_headers>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:269
+msgid ""
+"This is meant to be used by the I<libc6> maintainer, when he compiles "
+"I<libc6>, to also package up the corresponding headers.  B<DO NOT SET THIS> "
+"unless you know what you are doing, since a mismatch between the headers you "
+"package and I<libc6> may well create a subtle instability in all code "
+"compiled on your machine. You have been warned. The environment variable "
+"B<MAKE_LIBC_HEADERS> overrides this.  The default is unset."
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:269 make-kpkg.8:366
+#, no-wrap
+msgid "B<CONCURRENCY_LEVEL>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:279
+msgid ""
+"If defined, this variable sets the concurrency level of make used to compile "
+"the kernel and the modules set using I<-j> flags to the sub make in the "
+"B<build> target of B<make-kpkg.> Should be a (small) integer, if used."
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:279
+#, no-wrap
+msgid "B<ARCH_IN_NAME>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:290
+msgid ""
+"If defined, this variable causes B<make-kpkg> to use an extended name for "
+"the kernel image package by embedding the subarchitecture in the image name, "
+"so one could write a script to create multiple subarchitectures one after "
+"the other.  B<Please note> that only the package I<name> is affected, not "
+"module locations etc."
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:290
+#, no-wrap
+msgid "B<CONFDIR>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:301
+msgid ""
+"Set this variable, either in the environment or in the config file, to point "
+"to the location where the kernel config files are located. These are "
+"architecture specific I<.config> files (look at "
+"I</usr/share/kernel-package/Config> for examples). This is useful for people "
+"who need to compile for several architectures. Defaults to "
+"I</usr/share/kernel-package/Config>"
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:301
+#, no-wrap
+msgid "B<IMAGEDIR>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:310
+msgid ""
+"If you want the image to be stored elsewhere than I</boot> set this variable "
+"to the dir where you want the image. This may be of help to B<loadlin> "
+"users. Defaults to I</boot>."
+msgstr ""
+
+#. type: TP
+#: kernel-pkg.conf.5:310
+#, no-wrap
+msgid "B<MODULE_LOC>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:316
+msgid ""
+"Set this variable, either in the environment or in the config file, to point "
+"to the location where the add-on modules are located. Defaults to "
+"I</usr/src/modules>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:319
+msgid "The value of a variable can be set so:"
+msgstr ""
+
+#. type: IP
+#: kernel-pkg.conf.5:319
+#, no-wrap
+msgid "a)"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:322
+msgid ""
+"Defaults exist in the rules file. These are the values used if no "
+"customization is done."
+msgstr ""
+
+#. type: IP
+#: kernel-pkg.conf.5:322
+#, no-wrap
+msgid "b)"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:326
+msgid ""
+"Variables can be set in the config file I</etc/kernel-pkg.conf>.  These "
+"values override the defaults."
+msgstr ""
+
+#. type: IP
+#: kernel-pkg.conf.5:326
+#, no-wrap
+msgid "c)"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:329
+msgid ""
+"Variables can also be set by setting a corresponding environment variable.  "
+"These values override the config file and the defaults."
+msgstr ""
+
+#. type: IP
+#: kernel-pkg.conf.5:329
+#, no-wrap
+msgid "d)"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:334
+msgid ""
+"Using B<make-kpkg> options, or, if using the rules file directly, on command "
+"line"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:336
+msgid "B<# xxx/rules DEBIAN_REVISION=2.0a kernel_image>"
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:338
+msgid "This overrides all the above methods."
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:343
+msgid "The file described here is I</etc/kernel-pkg.conf> or I<~/.kernel-pkg.conf>."
+msgstr ""
+
+#. type: Plain text
+#: kernel-pkg.conf.5:348
+msgid "B<make>(1), B<make-kpkg>(1), B<kernel-img.conf>(5), B<The GNU Make manual>"
+msgstr ""
+
+#. type: TH
+#: make-kpkg.8:27
+#, no-wrap
+msgid "MAKE-KPKG"
+msgstr ""
+
+#. type: TH
+#: make-kpkg.8:27
+#, no-wrap
+msgid "Nov 14 2002"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:30
+msgid "make-kpkg - build Debian kernel packages from Linux kernel sources"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:34
+msgid "B<make-kpkg> [I<options>] [I<target> [I<target> ...]]"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:51
+msgid ""
+"This manual page explains the Debian B<make-kpkg> utility, which is used to "
+"create the kernel related Debian packages. This utility needs to be run from "
+"a top level Linux kernel source directory, which has been previously "
+"configured (unless you are using the configure target). Normally, if "
+"kernel-package does not find a I<.config> file in the current directory, it "
+"tries very hard to get an appropriate one (usually a config file already "
+"tailored for Debian kernels for that architecture), and then calls B<make "
+"oldconfig> to let the user answer any new questions. However, this might "
+"still result in an inappropriate configuration, you are encouraged to "
+"confugre the kernel by the usual means before invoking B<make-kpkg.>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:56
+msgid "Typically, B<make-kpkg> should be run under B<fakeroot,>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:59
+msgid "make-kpkg --rootcmd fakeroot kernel_image"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:68
+msgid ""
+"but instead you run this command as root (this is not recommended), or under "
+"B<fakeroot>, or tell B<make-kpkg> how to become root (not recommended "
+"either, B<fakeroot> is perhaps the safest option), like so:"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:71
+msgid "make-kpkg --rootcmd sudo kernel_image"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:74
+msgid ""
+"The Debian package file is created in the parent directory of the kernel "
+"source directory where this command is run."
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:87
+msgid ""
+"Also, please note that some versions of gcc do not interact well with the "
+"kernel sources (gcc 2.95 has problems compiling the kernel without the flag "
+"I<'-fno-strict-aliasing'>.  This issue has been taken care of for recent "
+"kernels (2.2 and 2.4 series are fine) (I think you may have to edit the "
+"makefile for older kernels, or something).  You may control which version of "
+"gcc used in kernel compilation by setting the Makefile variables CC and "
+"HOSTCC in the top level kernel Makefile. You can do this simply by setting "
+"the environment variable B<MAKEFLAGS>.  To observe, try:"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:89
+#, no-wrap
+msgid "  % KBUILD_VERBOSE=1 MAKEFLAGS=\"CC=gcc-4.4\" make-kpkg configure\n"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:95
+msgid ""
+"The B<KBUILD_VERBOSE> shows the details of the commands being run.  (please "
+"see the top level kernel Makefile for variables that can be set)."
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:100
+msgid ""
+"B<WARNING>: Do NOT set the -j option in MAKEFLAGS directly, this shall cause "
+"the build to fail. Use CONCURRENCY_LEVEL as specified below. There is also a "
+"-j flag that can be used."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:101
+#, no-wrap
+msgid "B<--help>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:104
+msgid "Print out a usage message."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:104
+#, no-wrap
+msgid "B<--revision>I< number>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:121
+msgid ""
+"Changes the version number for the packages produced to the argument "
+"I<number>.  This has certain constraints: the version may contain only "
+"alphanumerics and the characters ~ + . (tilde, full stop and plus) and must "
+"contain a digit. (Look at the Policy manual for details). Optionally, you "
+"may prepend the revision with a digit followed by a colon (:). The default "
+"is B<10.00.Custom> unless the environment variable "
+"B<DEBIAN_REVISION_MANDATORY> is set, in which case an error is generated if "
+"the revision is not set on the command line or the configuration file.  "
+"B<Hint>: You may set it to $(version)-E<lt>fooE<gt> in the configuration "
+"file to get the upstream version number prepended to your custom string "
+"E<lt>fooE<gt>."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:121
+#, no-wrap
+msgid "B<--append-to-version>I< foo>"
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:123
+#, no-wrap
+msgid "B<--append_to_version>I< foo>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:143
+msgid ""
+"This argument (I<foo>)  is appended to the value of the EXTRAVERSION "
+"variable present in the kernel Makefile. Since EXTRAVERSION is a component "
+"of the kernel version, it is also added to the Debian package name, and, as "
+"such must obey the policy governing the package name. That means it may "
+"contain only B<lowercase> alphanumerics and the characters ~ - + . (tilde, "
+"full stop, hyphen, and plus). Uppercase letters are not permitted under the "
+"Policy for a new package.  If the environment variable "
+"B<IGNORE_UPPERCASE_VERSION> is set, make-kpkg shall lower case version "
+"numbers set in the Makefile or in the I<localversion> file.  This option "
+"overrides the environment variable B<APPEND_TO_VERSION>."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:143
+#, no-wrap
+msgid "B<--added-modules>I<\\ foo>"
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:145
+#, no-wrap
+msgid "B<--added_modules>I<\\ foo>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:158
+msgid ""
+"The argument should be a comma separated list of additional add-on modules "
+"(not in the main kernel tree) that you wish to build when you invoke the "
+"modules_blah targets. You may give full path names of the directory the "
+"modules reside in, or just the module name if it can be found in "
+"B<MODULE_LOC>, which defaults to I</usr/src/modules>.  The default is that "
+"all modules in B<MODULE_LOC>, are compiled when the modules_blah targets are "
+"invoked."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:158
+#, no-wrap
+msgid "B<--arch\\ foo>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:171
+msgid ""
+"This is useful for setting the architecture when you are cross compiling. If "
+"you are not cross compiling, the architecture is determined "
+"automatically. The same effect can be achieved by setting the environment "
+"variable B<KPKG_ARCH.> The value should be whatever B<DEB_HOST_ARCH_CPU> "
+"contains when I<dpkg-architecture> is run on the target machine, or it can "
+"be another architecture in a multi-arch set (like i386/amd64)."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:171
+#, no-wrap
+msgid "B<--cross-compile>I<\\ foo>"
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:173
+#, no-wrap
+msgid "B<--cross_compile>I<\\ foo>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:184
+msgid ""
+"This is useful for setting the target string when you are cross "
+"compiling. Use the dummy target \"-\" if you are building for other arches "
+"of a multiarch set, like i386/amd64. The same effect can be achieved by "
+"setting the environment variable. Please note that this does not in any way "
+"set the compiler the kernel build process shall use; if the default compiler "
+"that the build process comes up with is not the one desired, please "
+"explicitly specify the compiler that should be used.  B<CROSS_COMPILE>"
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:184
+#, no-wrap
+msgid "B<--subarch>I<\\ foo>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:193
+msgid ""
+"Some architectures (the Alpha, and the m68k) require a different kernel for "
+"each sub-architecture. This option provides a way of specifying it as an "
+"argument to B<make-kpkg>. B<Please note> that additional support for "
+"sub-architectures may be required in the kernel sources to actually make "
+"this do anything. The same effect can be achieved by setting the environment "
+"variable B<KPKG_SUBARCH>."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:193
+#, no-wrap
+msgid "B<--arch-in-name>"
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:195
+#, no-wrap
+msgid "B<--arch_in_name>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:205
+msgid ""
+"This option uses an extended name for the kernel image package by embedding "
+"the sub-architecture in the image name, so one could write a script to "
+"create multiple sub-architectures one after the other. You may also do this "
+"by setting the environment variable B<ARCH_IN_NAME>.  B<Please note> that "
+"only the package I<name> is affected, not modules locations etc."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:205
+#, no-wrap
+msgid "B<--pgpsign>I< name>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:216
+msgid ""
+"Set the string used to sign the B<changes> file for any external modules in "
+"I</usr/src/modules/> using PGP. This option will override the builtin "
+"default and the site wide customizations stored in the file "
+"I</etc/kernel-pkg.conf> or I<~/.kernel-pkg.conf>."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:216
+#, no-wrap
+msgid "B<--config>I< target>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:224
+msgid ""
+"Change the type of configure done from the default CW<oldconfig>.  I<target> "
+"must be one of CW<oldconfig>, CW<config>, CW<menuconfig>, CW<gconfig>, "
+"CW<nconfig>, CW<xconfig>, CW<randconfig>, CW<defconfig>, CW<allmodconfig>, "
+"CW<allyesconfig>, CW<allnoconfig>, CW<old>, CW<menu>, CW<g>, or CW<x>."
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:233
+msgid ""
+"B<Note> however that B<make-kpkg> scans the config file at start up for some "
+"options, notably the fact that modules are enabled or not, so toggling the "
+"status during the delayed configuration results in an error. If needed, "
+"create the configuration file as close to the desired one before calling "
+"make-kpkg with this switch."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:233
+#, no-wrap
+msgid "B<--targets>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:238
+msgid "Prints out a list of known targets. See the Section B<Targets> below."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:238
+#, no-wrap
+msgid "B<--noexec>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:246
+msgid ""
+"Pass a B<-n> option to the I<make> process so that commands are merely "
+"printed to the screen but not actually executed. This is very useful for "
+"debugging."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:246
+#, no-wrap
+msgid "B<--verbose>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:252
+msgid ""
+"This calls I<make> with the -V=1 option, which calls out the top level Make "
+"commands, also useful in seeing what is happening."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:252
+#, no-wrap
+msgid "B<--initrd>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:280
+msgid ""
+"If B<make-kpkg> is generating a I<kernel-image> package, arrange to convey "
+"to the hook scripts run from the post installation maintainer scripts that "
+"this image requires an I<initrd>, and that the I<initrd> generation hook "
+"scripts should not short circuit early. Without this option, the example "
+"I<initramfs> hook scripts bundled in with B<kernel-package> will take no "
+"action on installation.  The same effect can be achieved by setting the "
+"environment variable B<INITRD> to any non empty value.  Please note that "
+"unless there are hook scripts in I</etc/kernel> or added into the hook "
+"script parameter of I</etc/kernel-img.conf>, no initrd will be created (the "
+"bundled in example scripts are just examples -- user action is required "
+"before anything happens)."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:280
+#, no-wrap
+msgid "B<--jobs>I< number>"
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:282
+#, no-wrap
+msgid "B<-j>I< number>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:288
+msgid "Set the environment variable B<CONCURRENCY_LEVEL> to I<number>."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:288
+#, no-wrap
+msgid "B<--overlay-dir>I< /path/to/directory>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:304
+msgid ""
+"The specified directory should contain files that will be placed in the "
+"I<./debian> directory of the kernel sources, in preparation to building the "
+"debian packages. The files will replace anything in "
+"I</usr/share/kernel-package> that would normally be placed there, and it is "
+"up to the user to make sure that the files in the overlay directory are "
+"compatible with B<make-kpkg>.  If you break B<make-kpkg> with an overlay "
+"file, you get to keep the pieces. The same effect can be achieved by setting "
+"the environment variable B<KPKG_OVERLAY_DIR>."
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:315
+msgid ""
+"Please note that I<overlay-dir/Control> and I<overlay-dir/changelog> are "
+"special, and variable substitution is performed on these files. Use "
+"I</usr/share/kernel-package/Control> and "
+"I</usr/share/kernel-package/changelog> files as templates."
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:325
+msgid ""
+"If a I<overlay-dir/post-install> executable (or executable script) exists, "
+"it shall be run immediately after I<./debian> is populated. The script shall "
+"be executed in the I<./debian> directory. This can be used, for instance, to "
+"delete files the user does not want, or to take actions other than simple "
+"replacement."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:325
+#, no-wrap
+msgid "B<--rootcmd foo>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:337
+msgid ""
+"The command that provides a means of gaining super user access (for example, "
+"`sudo' or `fakeroot') as needed by dpkg-buildpackage's -r option. This "
+"option does not work for three of the targets, namely, I<binary>, "
+"I<binary-indep>, and I<binary-arch>.  For those targets the entire "
+"I<make-kpkg> command must be run as (fake)root."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:337
+#, no-wrap
+msgid "B<--stem>I<\\ foo>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:349
+msgid ""
+"Call the packages I<foo>-* instead of kernel-*. This is useful in helping "
+"transition from calling the packages kernel-* to linux-* packages, in "
+"preparation for non-linux kernels in the distribution. The default is "
+"linux. The stem, since it is the initial part of a package name must consist "
+"only of lower case letters (`a-z'), digits (`0-9'), plus (`+') and minus "
+"(`-') signs, and periods (`.').  It must be at least two characters long and "
+"must start with an alphanumeric character."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:349
+#, no-wrap
+msgid "B<--us>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:354
+msgid ""
+"This option is passed to dpkg-buildpackage, and directs that package not to "
+"sign the source. This is only relevant for the buildpackage target."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:354
+#, no-wrap
+msgid "B<--uc>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:359
+msgid ""
+"This option is passed to dpkg-buildpackage, and directs that package not to "
+"sign the changelog. This is only relevant for the buildpackage target."
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:366
+msgid ""
+"The options maybe shortened to the smallest unique string, and may be "
+"entered with either a - or a -- prefix, and you may use a space or an = "
+"symbol between an option string and a value. You may also use the form "
+"option=value; for details these and other variant forms supported, please "
+"read B<Getopt::Long>(3perl)."
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:377
+msgid ""
+"If defined, this environment variable sets the concurrency level of make "
+"used to compile the kernel and the modules set using I<-j> flags to the sub "
+"make in the B<build> target of B<make-kpkg>.  Should be a (small) integer, "
+"if used. You can get the current number of CPUs using the command:"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:380
+msgid "grep -c '^processor' /proc/cpuinfo"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:384
+msgid ""
+"B<WARNING>: Do NOT set the -j option in MAKEFLAGS directly, this shall call "
+"the build to fail. It is possible to set -j as a make-kpkg argument."
+msgstr ""
+
+#. type: SH
+#: make-kpkg.8:384
+#, no-wrap
+msgid "TARGETS"
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:385
+#, no-wrap
+msgid "B<clean>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:402
+msgid ""
+"Cleans the kernel source directory of all files created by target B<build,> "
+"and runs a make distclean. (Please look at a Linux kernel Makefile for "
+"details).  Please note that although we take care of the list of current "
+"kernel configuration contained in the file I<.config>, the file "
+"I<include/linux/autoconf.h> is not preserved. This target should not be "
+"combined with other targets, since B<make-kpkg> reads in all data I<before> "
+"running any target, so the subsequent targets shall be run with the old "
+"data, which may not be what you want."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:402
+#, no-wrap
+msgid "B<buildpackage>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:410
+msgid ""
+"This target runs the targets B<clean>, and B<binary>, and produces the "
+"complete package using B<dpkg-buildpackage>."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:410
+#, no-wrap
+msgid "B<binary>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:422
+msgid ""
+"This target produces all four Debian kernel packages by running the targets "
+"B<binary-indep> and B<binary-arch>.  However, this requires I<make-kpkg> to "
+"be run as root (or fakeroot), since I<--rootcmd> will not work."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:422
+#, no-wrap
+msgid "B<binary-indep>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:435
+msgid ""
+"This target produces the arch independent packages by running the targets "
+"B<kernel_source>, B<kernel_manual> and B<kernel_doc>.  However, this also "
+"requires I<make-kpkg> to be run as root (or fakeroot), since I<--rootcmd> "
+"will not work."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:435
+#, no-wrap
+msgid "B<binary-arch>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:447
+msgid ""
+"This target produces the arch dependent packages by running the targets "
+"B<kernel_headers> and B<kernel_image>.  However, this also requires "
+"I<make-kpkg> to be run as root (or fakeroot), since I<--rootcmd> will not "
+"work."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:447
+#, no-wrap
+msgid "B<kernel_source>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:470
+msgid ""
+"This target produces a debianised package of the Linux kernel sources.  If "
+"the environment variable B<SOURCE_CLEAN_HOOK> points to an executable, then "
+"that executable shall be run from the temporary (top) directory of the "
+"kernel sources just before packaging it, "
+"I<./debian/tmp-source/usr/src/kernel-source-X.X.XX,> so people may take any "
+"action they see fit (remove arch trees, prune version control directories, "
+"I<find . -type d -name CVS -prune -exec rm -rf {} \\;> etc.). This has no "
+"effect on anything other than the kernel sources that are being packaged -- "
+"if the script operates on the current directory and its children, the "
+"original source tree should remain intact. The environment variables "
+"B<HEADER_CLEAN_HOOK> and B<DOC_CLEAN_HOOK> are similar. They should point to "
+"executables, then that executable shall be run from the temporary (top) "
+"directory of the kernel headers and documentation just before packaging "
+"respectively, so people may take any action they see fit. This also has no "
+"effect on anything other than the sources that are being packaged."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:470
+#, no-wrap
+msgid "B<kernel_debug>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:484
+msgid ""
+"This target produces a Debian package containing the debugging symbols for "
+"the modules contained in the corresponding image package. The basic idea "
+"here is to keep the space in I</lib/modules/E<lt>kverE<gt>> under control, "
+"since this could be on a root partition with space restrictions. Please "
+"B<note> that if module signatures are enable in the kernel configuration the "
+"corresponding image package will not have modules with the debugging link "
+"pointing to these debugging symbol files. In order to turn on debugging "
+"links for modules in the image package you need to turn off module "
+"signatures."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:484
+#, no-wrap
+msgid "B<kernel_headers>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:488
+msgid ""
+"This target produces a Debian package containing the header files included "
+"in the Linux kernel."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:488
+#, no-wrap
+msgid "B<kernel_manual>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:495
+msgid ""
+"This target produces a Debian package containing the section 9 manual pages "
+"included in the Linux kernel. Please note that this is not really an "
+"independent target; calling this shall also invoke the I<kernel_doc> target, "
+"and creates a kernel-doc package at the same time."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:495
+#, no-wrap
+msgid "B<kernel_doc>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:501
+msgid ""
+"This target produces a Debian package containing the documentation included "
+"in the Linux kernel. This can be called independently of the "
+"I<kernel_manual> target, but not the other way around."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:501
+#, no-wrap
+msgid "B<kernel_image>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:516
+msgid ""
+"This target produces a Debian package of the Linux kernel source image, and "
+"any modules configured in the kernel configuration file I<.config>.  If "
+"there is no I<.config> file in the kernel source directory, a default "
+"configuration is provided similar to the one used to create the B<Debian> "
+"boot-floppies. If the kernel configuration file has enabled support for "
+"modules, modules will be created and installed. If module signatures are not "
+"enabled, the resulting modules will have a link to the location of the "
+"debugging symbols file for the mdoule, usually installed by the debug "
+"package."
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:531
+msgid ""
+"If the file I<./debian/post-install> exists, and is an executable, it is run "
+"just before the kernel image package is created.  Also, please note that if "
+"there are any scripts in I<./debian/image.d/> directory, B<run-parts> shall "
+"be called on that directory just before the kernel image package is "
+"built. The location of the root of the image package being built shall be "
+"passed in the environment variable B<IMAGE_TOP>, and the kernel version is "
+"passed in through the environment variable B<version> for all these scripts."
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:539
+msgid ""
+"Please see the documentation about hooks in B<kernel-img.conf>(5).  These "
+"hooks are variables that can be pointed by the local sysadmin to scripts "
+"that add or remove a line from the grub menu list at kernel image install "
+"and remove times. A sample script to add lines to a grub menu file is "
+"included in the directory I</usr/share/doc/kernel-package/.>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:574
+msgid ""
+"Apart from hook variables that the local admin may set, there are a set of "
+"directories where packages, or the local admin, may drop in script "
+"files. The directories are I</etc/kernel/preinst.d/>, "
+"I</etc/kernel/postinst.d/>, I</etc/kernel/prerm.d/>, "
+"I</etc/kernel/postrm.d/>, I</etc/kernel/preinst.d/E<lt>VERSIONE<gt>/>, "
+"I</etc/kernel/postinst.d/E<lt>VERSIONE<gt>/>, "
+"I</etc/kernel/prerm.d/E<lt>VERSIONE<gt>/>, and "
+"I</etc/kernel/postrm.d/E<lt>VERSIONE<gt>/>.  If they exists, the "
+"kernel-image package shall run a B<run-parts> program over the directory "
+"(including the versioned one), giving the version being installed or removed "
+"as an argument, in the corresponding phase of installation or "
+"removal. Before calling these scripts, the env variable B<STEM> shall be set "
+"to the value of the I<--stem> argument (or the default value, linux), and "
+"the variable B<KERNEL_PACKAGE_VERSION> shall be set to the version of the "
+"kernel-package that created the package. These scripts shall be called with "
+"two arguments, the first being the I<version> of the kernel image, and the "
+"second argument being the I<location> of the kernel image itself. Since "
+"debconf is in use before the script is called, this script should issue no "
+"diagnostic messages to stdout -- while the postinst does call B<db_stop>, "
+"debconf does not restore stdout, so messages to stdout disappear."
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:597
+msgid ""
+"On installation, it also offers to run the Linux loader, I<LILO> (or "
+"alternates like I<loadlin>, I<SILO>, I<QUIK>, I<VMELILO>, I<ZIPL>, "
+"I<yaboot>, I<PALO> or I<GRUB>), creating a configuration file for supported "
+"boot loaders if needed. At that time it also offers to put the new kernel on "
+"a floppy, formatting the floppy if needed.  On deletion, the package checks "
+"the version of the kernel running, and refuses to delete a running kernel.  "
+"I<grub> rates a special mention here, since grub may not need to be rerun "
+"after installing a kernel image, though an automated change to the menu list "
+"would be nice on install and removal of kernel image packages."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:597
+#, no-wrap
+msgid "B<build>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:604
+msgid ""
+"This target, used by target B<kernel_image> above, compiles the Linux kernel "
+"image."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:604
+#, no-wrap
+msgid "B<modules>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:626
+msgid ""
+"This target allows you to build all add-on modules and packages that are "
+"very dependent on the precise kernel version they are compiled for at the "
+"same time you build your kernel image.  This target expects to find the "
+"modules or packages under /usr/src/modules, and, for all such directories, "
+"changes to MODULE_LOC/x (MODULE_LOC defaults to I</usr/src/modules>), and "
+"runs the B<kdist> rule in the local I<debian.rules> file. This target should "
+"create the B<Debian> module package(s), and may also produce a compressed "
+"tar file, and a compressed diff file, with I<md5sums> recorded in a changes "
+"file using B<dpkg-genchanges>.  The file is signed by the same identity that "
+"would be used to sign the kernel packages. This option is used by "
+"maintainers uploading the package to the Debian archives."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:626
+#, no-wrap
+msgid "B<modules_config>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:635
+msgid ""
+"This target allows you to configure all packages under B<MODULE_LOC>, which "
+"defaults to B</usr/src/modules>.  This is useful if you need to manually "
+"modify some aspects of the configuration, or if you want to manually compile "
+"the add on modules.  This should not be called unless you already have a "
+"./debian directory."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:635
+#, no-wrap
+msgid "B<modules_image>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:651
+msgid ""
+"This target allows you to build all packages under B<MODULE_LOC>, which "
+"defaults to B</usr/src/modules>, but does not create the source or diff "
+"files, and does not create and sign a changes file. This is the only modules "
+"related option you need if you just want to compile the add on modules image "
+"files for installation on one or more machines. Generally called in "
+"conjunction with B<kernel_image>, especially if also using the option "
+"B<append_to_version> (prevents spurious warnings).  This should not be "
+"called unless you already have a ./debian directory."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:651
+#, no-wrap
+msgid "B<modules_clean>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:660
+msgid ""
+"This target allows you to clean all packages under B<MODULE_LOC>, which "
+"defaults to B</usr/src/modules>, and this should be all that is needed to "
+"undo the effect of any of the other modules_ targets.  This should not be "
+"called unless you already have a ./debian directory."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:660
+#, no-wrap
+msgid "B<configure>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:673
+msgid ""
+"This target runs configure (actually, B<config_target>, set by B<--config> "
+"which defaults to I<oldconfig>)  early, so you may edit files generated by "
+"B<make config> in the kernel source directory and not have them stomped by "
+"B<make-kpkg> later."
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:682
+msgid ""
+"This target creates the I<./debian> directory, and optionally patches the "
+"source. This target is called by the B<configure> target. You may use this "
+"target to have the sources patched, and then manually run the configuration "
+"step to update the configuration file, with any new configuration options "
+"the patches may have introduced."
+msgstr ""
+
+#. type: TP
+#: make-kpkg.8:682
+#, no-wrap
+msgid "B<libc-kheaders>"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:694
+msgid ""
+"This is a special target for the libc-dev maintainer, who can use it to "
+"create the headers package that libc needs. Please note that it is dangerous "
+"to create a libc-kheaders package that is different from the headers libc "
+"was compiled with; it is B<known> to subtly break systems. Please look at "
+"I</usr/share/kernel-package/README.headers> for details.  Creating and "
+"installing a self created libc-kheaders package may break your system unless "
+"you know what you are doing. You have been warned."
+msgstr ""
+
+#. type: SH
+#: make-kpkg.8:694
+#, no-wrap
+msgid "ENVIRONMENT VARIABLES"
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:716
+msgid ""
+"B<KPKG_DEBUG>, if set, causes make-kpkg to spit out debugging messages about "
+"some shell functions executed internally. This is probably of not interest "
+"to anyone not debugging B<make-kpkg>.  The following variables (documented "
+"above) also affect B<make-kpkg>: B<DEBIAN_REVISION_MANDATORY>, "
+"B<APPEND_TO_VERSION>, B<VERSION_H_OK>, B<KPKG_ARCH>, B<CROSS_COMPILE>, "
+"B<KPKG_SUBARCH>, B<KPKG_OVERLAY_DIR>, B<ARCH_IN_NAME>, B<INITRD>, "
+"B<SOURCE_CLEAN_HOOK>, B<MODULE_LOC>, B<CONCURRENCY_LEVEL> and "
+"B<IGNORE_UPPERCASE_VERSION>."
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:741
+msgid ""
+"Apart from the runtime options, the I<debian.rules> file run by B<make-kpkg> "
+"also looks for a per user configuration file I<~/.kernel-pkg.conf>.  Failing "
+"that, it looks for site-wide defaults in the file I</etc/kernel-pkg.conf>.  "
+"The default configuration allows there to be a site wide override for the "
+"full name and email address of the person responsible for maintaining the "
+"kernel packages on the site, but the I</etc/kernel-pkg.conf> (or "
+"I<~/.kernel-pkg.conf>)  file is actually a Makefile snippet, and any legal "
+"make directives may be included in there.  B<Note>: Caution is urged with "
+"this file, since you can totally change the way that the make is run by "
+"suitably editing this file. Please look at "
+"I</usr/share/doc/kernel-package/Problems.gz> for a list of known problems "
+"while compiling kernel images. Extensive tutorial like documentation is also "
+"available in I</usr/share/doc/kernel-package/README.gz> and it is "
+"recommended that one read that before using this utility."
+msgstr ""
+
+#. type: Plain text
+#: make-kpkg.8:753
+msgid ""
+"B<dpkg-deb>(1), B<dpkg-source>(1), B<make>(1), B<Getopt::Long>(3perl), "
+"B<kernel-img.conf>(5), B<kernel-pkg.conf>(5), B<The\\ Programmers\\ manual>, "
+"B<The\\ GNU\\ Make\\ manual>, and the extensive documentation in the "
+"I</usr/share/doc/kernel-package> directory"
+msgstr ""
