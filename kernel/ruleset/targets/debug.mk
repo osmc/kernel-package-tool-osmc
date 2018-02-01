@@ -53,7 +53,6 @@ debian/stamp/install/$(b_package):
           $(install_file) debian/stamp/conf/vars  	$(DOCDIR)/conf.vars
 	$(install_file) CREDITS                         $(DOCDIR)/
 	$(install_file) MAINTAINERS                     $(DOCDIR)/
-	$(install_file) REPORTING-BUGS                  $(DOCDIR)/
 	$(install_file) README                          $(DOCDIR)/
 	if test -f README.Debian ; then                                                 \
            $(install_file) README.Debian                $(DOCDIR)/README.Debian.1st;\
